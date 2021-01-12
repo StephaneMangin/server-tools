@@ -1,4 +1,5 @@
 # Copyright 2014-2016 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import _, api, fields, models
@@ -17,7 +18,6 @@ class CleanupPurgeLineColumn(models.TransientModel):
         "cleanup.purge.wizard.column", "Purge Wizard", readonly=True
     )
 
-    @api.multi
     def purge(self):
         """
         Unlink columns upon manual confirmation.
@@ -123,7 +123,7 @@ class CleanupPurgeWizardColumn(models.TransientModel):
                 model_pool
             )
 
-        for table, model_spec in table2model.items():
+        for _table, model_spec in table2model.items():
             for column in self.get_orphaned_columns(model_spec[1]):
                 res.append((0, 0, {"name": column, "model_id": model_spec[0]}))
         if not res:

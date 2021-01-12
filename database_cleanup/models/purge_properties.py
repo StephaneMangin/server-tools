@@ -1,4 +1,5 @@
 # Copyright 2017 Therp BV <http://therp.nl>
+# Copyright 2021 Camptocamp <https://camptocamp.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 # pylint: disable=consider-merging-classes-inherited
 from odoo import api, fields, models
@@ -27,7 +28,6 @@ class CleanupPurgeLineProperty(models.TransientModel):
         ]
     )
 
-    @api.multi
     def purge(self):
         """Delete properties"""
         self.write({"purged": True})
